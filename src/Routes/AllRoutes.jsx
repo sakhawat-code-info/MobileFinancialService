@@ -4,6 +4,9 @@ import ErrorPage from "../Pages/ErrorPage";
 import App from "../App";
 import Registration from "../Pages/Registration";
 import Login from "../Pages/Login";
+import UserAction from "../Components/UserAction";
+import AgentPage from "../Pages/AgentPage";
+import AdminPage from "../Pages/AdminPage";
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +25,18 @@ export const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/user",
+        element: <UserAction />,
+      },
+      {
+        path: "/agent",
+        element: <AgentPage />,
+      },
+      {
+        path: "/admin",
+        element: <AdminPage />,
       },
     ],
   },

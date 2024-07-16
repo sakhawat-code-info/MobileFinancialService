@@ -1,17 +1,14 @@
-
-import './App.css'
+import "./App.css";
+import UserAction from "./Components/UserAction";
 
 function App() {
-
-
   return (
     <>
       <div>
-        <p>body</p>
+        <UserAction />
       </div>
-
     </>
-  )
+  );
 }
 
-export default App
+export default App;
