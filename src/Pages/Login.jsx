@@ -1,121 +1,140 @@
+import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+
+import Swal from "sweetalert2";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const Login = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    const email = data.email;
+    const password = data.password;
+
+    console.log(email, password);
+  };
+
   return (
     <div>
-      <div className="font-[sans-serif]">
-        <div className="min-h-screen flex fle-col items-center justify-center py-6 px-4">
-          <div className="grid md:grid-cols-2 items-center gap-4 max-w-6xl w-full">
-            <div className="border border-gray-300 rounded-lg p-6 max-w-md shadow-[0_2px_22px_-4px_rgba(93,96,127,0.2)] max-md:mx-auto">
-              <form className="space-y-4">
-                <div className="mb-8">
-                  <h3 className="text-gray-800 text-3xl font-extrabold">
-                    Sign in
-                  </h3>
-                  <p className="text-gray-500 text-sm mt-4 leading-relaxed">
-                    Sign in to your account and explore a world of
-                    possibilities. Your journey begins here.
-                  </p>
+      <div
+        className="w-full h-screen font-sans bg-cover "
+        style={{
+          backgroundImage:
+            "url(https://images.pexels.com/photos/994605/pexels-photo-994605.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)",
+        }}
+      >
+        <div className="container flex items-center justify-center flex-1 h-full mx-auto">
+          <div className="w-full max-w-lg">
+            <div className="leading-loose">
+              <div className="flex flex-col w-full rounded shadow-xl bg-white/25 max-w-md px-4 py-8 bg-white dark:bg-gray-800 sm:px-6 md:px-8 lg:px-10">
+                <div className="self-center mb-6 text-xl font-light text-gray-600 sm:text-2xl dark:text-white">
+                  Login To Your Account
                 </div>
 
-                <div>
-                  <label className="text-gray-800 text-sm mb-2 block">
-                    Mobile No
-                  </label>
-                  <div className="relative flex items-center">
-                    <input
-                      name="number"
-                      type="number"
-                      required
-                      className="w-full text-sm text-gray-800 border border-gray-300 px-4 py-3 rounded-lg outline-blue-600"
-                      placeholder="Enter user mobile no"
-                    />
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="#bbb"
-                      stroke="#bbb"
-                      className="w-[18px] h-[18px] absolute right-4"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle
-                        cx="10"
-                        cy="7"
-                        r="6"
-                        data-original="#000000"
-                      ></circle>
-                      <path
-                        d="M14 15H6a5 5 0 0 0-5 5 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 5 5 0 0 0-5-5zm8-4h-2.59l.3-.29a1 1 0 0 0-1.42-1.42l-2 2a1 1 0 0 0 0 1.42l2 2a1 1 0 0 0 1.42 0 1 1 0 0 0 0-1.42l-.3-.29H22a1 1 0 0 0 0-2z"
-                        data-original="#000000"
-                      ></path>
-                    </svg>
-                  </div>
+                <div className="mt-8">
+                  {/* autoComplete="off" */}
+                  <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className="flex flex-col mb-2">
+                      <div className="flex relative ">
+                        <span className="rounded-l-md inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
+                          <svg
+                            width="15"
+                            height="15"
+                            fill="currentColor"
+                            viewBox="0 0 1792 1792"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M1792 710v794q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-794q44 49 101 87 362 246 497 345 57 42 92.5 65.5t94.5 48 110 24.5h2q51 0 110-24.5t94.5-48 92.5-65.5q170-123 498-345 57-39 100-87zm0-294q0 79-49 151t-122 123q-376 261-468 325-10 7-42.5 30.5t-54 38-52 32.5-57.5 27-50 9h-2q-23 0-50-9t-57.5-27-52-32.5-54-38-42.5-30.5q-91-64-262-182.5t-205-142.5q-62-42-117-115.5t-55-136.5q0-78 41.5-130t118.5-52h1472q65 0 112.5 47t47.5 113z"></path>
+                          </svg>
+                        </span>
+                        <input
+                          {...register("email", { required: true })}
+                          id="sign-in-email"
+                          className=" rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-[#0f6780] focus:border-transparent"
+                          placeholder="Your email"
+                        />
+                      </div>
+                      {errors.email && (
+                        <span className="text-red-800 ml-2">
+                          Email is required
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex flex-col mb-6">
+                      <div className="flex relative ">
+                        <span className="rounded-l-md inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
+                          <svg
+                            width="15"
+                            height="15"
+                            fill="currentColor"
+                            viewBox="0 0 1792 1792"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M1376 768q40 0 68 28t28 68v576q0 40-28 68t-68 28h-960q-40 0-68-28t-28-68v-576q0-40 28-68t68-28h32v-320q0-185 131.5-316.5t316.5-131.5 316.5 131.5 131.5 316.5q0 26-19 45t-45 19h-64q-26 0-45-19t-19-45q0-106-75-181t-181-75-181 75-75 181v320h736z"></path>
+                          </svg>
+                        </span>
+                        <input
+                          {...register("password", { required: true })}
+                          id="sign-in-email"
+                          className=" rounded-r-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-[#0f6780] focus:border-transparent"
+                          placeholder="Your password"
+                        />
+                      </div>
+                      {errors.password && (
+                        <span className="text-red-800 ml-2">
+                          Password is required
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex items-center mb-6 -mt-4">
+                      <div className="flex ml-auto">
+                        <a
+                          href="#"
+                          className="inline-flex text-xs font-thin text-gray-500 sm:text-sm dark:text-gray-100 hover:text-gray-700 dark:hover:text-white"
+                        >
+                          Forgot Your Password?
+                        </a>
+                      </div>
+                    </div>
+                    <div className="flex w-full">
+                      <button
+                        type="submit"
+                        className="py-2 px-4  bg-[#0f6780] hover:bg-white hover:text-[#0f6780] focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg border-2 border-[#0f6780]"
+                      >
+                        Login
+                      </button>
+                    </div>
+                  </form>
                 </div>
-                <div>
-                  <label className="text-gray-800 text-sm mb-2 block">
-                    Password
-                  </label>
-                  <div className="relative flex items-center">
-                    <input
-                      name="password"
-                      type="password"
-                      required
-                      className="w-full text-sm text-gray-800 border border-gray-300 px-4 py-3 rounded-lg outline-blue-600"
-                      placeholder="Enter password"
-                    />
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="#bbb"
-                      stroke="#bbb"
-                      className="w-[18px] h-[18px] absolute right-4 cursor-pointer"
-                      viewBox="0 0 128 128"
-                    >
-                      <path
-                        d="M64 104C22.127 104 1.367 67.496.504 65.943a4 4 0 0 1 0-3.887C1.367 60.504 22.127 24 64 24s62.633 36.504 63.496 38.057a4 4 0 0 1 0 3.887C126.633 67.496 105.873 104 64 104zM8.707 63.994C13.465 71.205 32.146 96 64 96c31.955 0 50.553-24.775 55.293-31.994C114.535 56.795 95.854 32 64 32 32.045 32 13.447 56.775 8.707 63.994zM64 88c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm0-40c-8.822 0-16 7.178-16 16s7.178 16 16 16 16-7.178 16-16-7.178-16-16-16z"
-                        data-original="#000000"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap items-center justify-between gap-4">
-                  <div className="text-sm">
-                    <a
-                      href="jajvascript:void(0);"
-                      className="text-blue-600 hover:underline font-semibold"
-                    >
-                      Forgot your password?
-                    </a>
-                  </div>
-                </div>
-
-                <div className="!mt-8">
-                  <button
-                    type="button"
-                    className="w-full shadow-xl py-3 px-4 text-sm tracking-wide rounded-lg text-white bg-blue-600 hover:bg-blue-700 focus:outline-none"
-                  >
-                    Log in
-                  </button>
-                </div>
-
-                <p className="text-sm !mt-8 text-center text-gray-800">
-                  Do not have an account{" "}
+                <div className="flex items-center justify-center mt-6">
                   <a
-                    href="javascript:void(0);"
-                    className="text-blue-600 font-semibold hover:underline ml-1 whitespace-nowrap"
+                    href="#"
+                    target="_blank"
+                    className="inline-flex items-center text-xs font-thin text-center text-gray-500 hover:text-gray-700 dark:text-gray-100 dark:hover:text-white"
                   >
-                    Register here
+                    <span className="ml-2 text-black font-semibold">
+                      If you have no Account Please{" "}
+                      <Link
+                        to={"/registration"}
+                        className="link link-secondary"
+                      >
+                        {" "}
+                        Register Now
+                      </Link>
+                    </span>
                   </a>
-                </p>
-              </form>
-            </div>
-            <div className="lg:h-[400px] md:h-[300px] max-md:mt-8">
-              <img
-                src="https://readymadeui.com/login-image.webp"
-                className="w-full h-full max-md:w-4/5 mx-auto block object-cover"
-                alt="Dining Experience"
-              />
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
